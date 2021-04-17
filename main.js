@@ -1,31 +1,10 @@
 let puppeteer = require("puppeteer");
+let fs = require("fs");
+let process = require("process");
 
 let uberFetch = require("./cabs/uber");
 let olaFetch = require("./cabs/ola");
 let meruFetch = require("./cabs/meru");
-
-
-// let form = document.querySelector("form");
-
-// input selectors
-// let srcSelectors = document.querySelector("#source");
-// let destSelectors = document.querySelector("#destination");
-// let citySelectors = document.querySelector("#cities");
-
-// form.addEventListener("submit", (e) => {
-//        e.preventDefault();
-       
-//        if(!srcSelectors.value){
-//               alert("Please enter source")
-//        }
-//        else if(!destSelectors.value){
-//               alert("Please enter destination");
-//        }
-//        else{
-//               getCabDetails(citySelectors.value, srcSelectors.value, destSelectors.value);
-//        }
-// });
-
 
 let getCabDetails = async (city, source, dest) => {
        console.log(source,dest,city);
@@ -38,12 +17,12 @@ let getCabDetails = async (city, source, dest) => {
 
        let uberArr = await uberFetch.getUber(city, source, dest, browserInstance);
        // let olaArr = await getOla(city, source, dest, browserInstance);
-       // let meruArr = await getMeru(city, source, dest, browserInstance);
+       let meruArr = await meruFetch.getMeru(city, source, dest, browserInstance);
 
        console.table(uberArr);
        // console.table(olaArr);
-       // console.table(meruArr);
+       console.table(meruArr);
 }
 
 
-getCabDetails("Delhi", "Greater Noida", "Ghaziabad");
+getCabDetails("Delhi", process.argv[2], process.argv[3]);

@@ -25,9 +25,13 @@ let getUber = async (city, src, dest, browserInstance) => {
     let consoleFn = () => {
        let arr = document.querySelectorAll(".pe-products-item");
        let detailsArr = [];
+       let bCount = 0;
+       let hCount = 0;
        for(let i=0;i<arr.length;i++){
               let item = arr[i].innerText.split("\n");
               if(item[0]=="Moto"){
+                     if(bCount>0) continue;
+                     bCount++;
                      detailsArr.push({
                             "Type" : "Bike",
                             "Fare" : item[1].split("₹")[1]
@@ -40,6 +44,8 @@ let getUber = async (city, src, dest, browserInstance) => {
                      })
               }
               else if(item[0]=="UberGo"){
+                     if(hCount>0) continue;
+                     hCount++;
                      detailsArr.push({
                             "Type" : "Hatchback",
                             "Fare" : item[1].split("₹")[1]

@@ -1,5 +1,5 @@
 
-let getUber = async (city, src, dest, browserInstance) => {
+let getUber = async (src, dest, browserInstance) => {
     let newTab = await browserInstance.newPage();
     await newTab.goto("https://www.uber.com/in/en/price-estimate/");
     

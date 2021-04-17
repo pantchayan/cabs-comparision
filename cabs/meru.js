@@ -1,6 +1,6 @@
 // https://www.meru.in/
 
-let getMeru = async (city, src, dest, browserInstance) => {
+let getMeru = async (src, dest, browserInstance) => {
        let newTab = await browserInstance.newPage();
        await newTab.goto("https://www.meru.in/");
        
@@ -41,6 +41,14 @@ let getMeru = async (city, src, dest, browserInstance) => {
    
        let consoleFn = () => {
           let detailsArr = [];
+          detailsArr.push({
+              "Type" : "Bike",
+              "Fare" : "NOT AVAILABLE"
+       })
+       detailsArr.push({
+              "Type" : "Auto",
+              "Fare" : "NOT AVAILABLE"
+       })
           let arr = document.querySelectorAll(".fare_cost");
           for(let i=0;i<3;i++){
                  let price = arr[i].innerText.split(" ")[1].split("-")[0];

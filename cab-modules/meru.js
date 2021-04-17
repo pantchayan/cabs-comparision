@@ -50,18 +50,21 @@ let getMeru = async (src, dest, browserInstance) => {
               "Fare" : "NOT AVAILABLE"
        })
           let arr = document.querySelectorAll(".fare_cost");
+          let sprice = 0;
           for(let i=0;i<3;i++){
                  let price = arr[i].innerText.split(" ")[1].split("-")[0];
+                
                  if(i==0){
-                     detailsArr.push({
-                            "Type" : "Sedan",
-                            "Fare" : price
-                     })
+                     sprice = price;
                  }
                  else if(i==1){
                      detailsArr.push({
                             "Type" : "Hatchback",
                             "Fare" : price
+                     })
+                     detailsArr.push({
+                            "Type" : "Sedan",
+                            "Fare" : sprice
                      })
                  }
                  else{

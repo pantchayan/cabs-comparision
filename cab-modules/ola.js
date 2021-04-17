@@ -5,7 +5,7 @@ let links = [
   "https://www.taxifarefinder.com/main.php?city=Ola-Bike-Delhi",
   "https://www.taxifarefinder.com/main.php?city=Ola-Auto-Delhi-India",
   "https://www.taxifarefinder.com/main.php?city=Ola-Mini-Delhi-India",
-  "https://www.taxifarefinder.com/main.php?city=Ola-Prime-Sedan-Delhi-India",
+  "https://www.taxifarefinder.com/main.php?city=Ola-Sedan-Mathura-India",
   "https://www.taxifarefinder.com/main.php?city=Ola-Prime-SUV-Delhi",
 ];
 
@@ -79,7 +79,7 @@ let getItem = async (browserInstance,link,src,dest) => {
        //.fareValue
        let consolefn = () => {
               let fare = document.querySelector(".fareValue");
-              return fare.innerText.split("₹")[1];
+              return fare.innerText.split("₹")[1].split(",").join("");
        }
 
        return newTab.evaluate(consolefn);

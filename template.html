@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+    <script type="text/javascript">
+      google.charts.load("current", { packages: ["bar"] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable({DATA_VALUES});
+
+        var options = {
+          chart: {
+            title: "Cab fares",
+            subtitle: "",
+          },
+          bars: "horizontal", // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(
+          document.getElementById("barchart_material")
+        );
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+
+    <link rel="stylesheet" href="./styles/styles.css" />
+  </head>
+  <body>
+    <div class="headings">
+      <h1>CAB KARO..</h1>
+      <h3>
+        Leaving somewhere? Use cab karo to find the best deal for your travel..
+      </h3>
+    </div>
+
+    <div class="trip-details">
+      <p style="font-weight: 700">
+        Here are the results for your comparison request
+      </p>
+      <p>
+        FROM: <span class="imp1">{%Source%}</span> <br />TO:
+        <span class="imp2">{%Destination%}</span>
+      </p>
+
+      <p class="route-details"> {%ROUTE_DETAILS%} </p>
+      <img src="data/map_screenshot.png" height = "400" width="600">
+    </div>
+
+    <div class="graph">
+      <div id="barchart_material" style="width: 900px; height: 500px"></div>
+    </div>
+    <div class="table">
+      <div class="type">
+        <img
+          src="https://i.pinimg.com/originals/46/cc/f1/46ccf1eb2c317642e702313020812921.png"
+          height="100px"
+          width="100px"
+        />
+        <p>BIKE</p>
+        <p>AUTO</p>
+        <p>HATCHBACK</p>
+        <p>SEDAN</p>
+        <p>SUV</p>
+      </div>
+      <div class="uber">
+        <img
+          src="https://pngimg.com/uploads/uber/uber_PNG24.png"
+          height="100px"
+          width="100px"
+        />
+        {%UBER_VALUES%}
+      </div>
+      <div class="ola">
+        <img
+          src="https://seekvectorlogo.com/wp-content/uploads/2018/05/ola-cabs-vector-logo.png"
+          height="100px"
+          width="120px"
+        />
+        {%OLA_VALUES%}
+      </div>
+      <div class="meru">
+        <img
+          src="https://seekvectorlogo.com/wp-content/uploads/2018/05/meru-cabs-vector-logo.png"
+          height="100px"
+          width="120px"
+        />
+        {%MERU_VALUES%}
+      </div>
+    </div>
+  </body>
+</html>

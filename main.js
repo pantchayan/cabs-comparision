@@ -5,6 +5,7 @@ let process = require("process");
 let graphPlot = require("./graphPlot");
 let htmlFormat = require("./htmlFormat");
 let map = require("./map");
+let notify = require("./notifications")
 
 let uberFetch = require("./cab-modules/uber");
 let olaFetch = require("./cab-modules/ola");
@@ -23,7 +24,7 @@ let meruFetch = require("./cab-modules/meru");
        let data = []
 
        
-       console.log("Getting Route Data...\n");
+       console.log("\nGetting Route Data...");
        let mapArr = await map.getMap(source, dest, browserInstance);
        console.log("Route data fetched successfully...")
        console.log("\nFetching prices for:");
@@ -50,6 +51,7 @@ let meruFetch = require("./cab-modules/meru");
        })
 
        console.log("\nPrices fetched...\nProcessing data... ");
+      
        fs.writeFileSync("./data/fares.json",JSON.stringify(data));
        // console.table(uberArr);
        // console.table(olaArr);
@@ -73,10 +75,17 @@ let meruFetch = require("./cab-modules/meru");
        console.log("\nGenerating pdf...");
        await pdfconverter();
        browserInstance.close();
+
+       console.log("\nSending mail...");
+
+       let email = fs.readFileSync("./data/credentials.txt", "utf-8");
+       notify.gmailsend(email);
+
+       console.log("\nSending whatsapp...");
+       notify.whatsappNotify(email);
+
        console.log("\nWork finished...");
 })()
-
-
 
 async function pdfconverter(){
        const browser = await puppeteer.launch({
@@ -84,15 +93,15 @@ async function pdfconverter(){
        });
        const tab = await browser.newPage();
        await tab.goto("C:\\Users\\pantc\\WebDev\\Activities\\Self\\cabs-comparision\\index.html",{
-         waitUntil:"load"
+         waitUntil:"load", timeout:0
        })
-       // await tab.screenshot({path : './data/ss.png'});
        function delay(time) {
               return new Promise(function(resolve) { 
                   setTimeout(resolve, time)
               });
        }
        await delay(4000);
+
        await tab.pdf({ path: './data/results.pdf'}); 
        browser.close();
 }

@@ -1,3 +1,4 @@
+let fs = require("fs");
 let getUber = async (src, dest, browserInstance) => {
   let newTab = await browserInstance.newPage();
   await newTab.goto("https://www.uber.com/in/en/price-estimate/");
@@ -65,10 +66,10 @@ let getUber = async (src, dest, browserInstance) => {
         });
       }
     }
-
+    
     return detailsArr;
   };
-
+  
   return newTab.evaluate(consoleFn);
 };
 

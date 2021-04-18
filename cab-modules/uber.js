@@ -8,10 +8,16 @@ let getUber = async (src, dest, browserInstance) => {
   await newTab.keyboard.press("Enter");
   await newTab.keyboard.press("Enter");
 
-  await newTab.type("input[name='pickup']", src, { delay: 300 });
+  await newTab.type("input[name='pickup']", src, { delay: 400 });
+  function delay(time) {
+    return new Promise(function (resolve) {
+      setTimeout(resolve, time);
+    });
+  }
+  await delay(3000);
+  await newTab.keyboard.press("Enter");
+  await newTab.keyboard.press("Enter");
 
-  await newTab.keyboard.press("Enter");
-  await newTab.keyboard.press("Enter");
 
   await newTab.type("input[name='destination']", dest, { delay: 300 });
 

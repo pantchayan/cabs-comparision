@@ -75,6 +75,13 @@ let getItem = async (browserInstance,link,src,dest) => {
        await new Promise((r) => setTimeout(r, 2000));
        await newTab.click(".form-goButton");
 
+       function delay(time) {
+              return new Promise(function (resolve) {
+                setTimeout(resolve, time);
+              });
+            }
+       await delay(3000);
+
        await newTab.waitForSelector(".fareValue");
        //.fareValue
        let consolefn = () => {

@@ -2,7 +2,8 @@
 
 <img src="https://user-images.githubusercontent.com/49815429/115147185-6e7a6700-a077-11eb-9162-ad8f7fc1c59c.PNG" width="500" height="350"/>
 <img src="https://user-images.githubusercontent.com/49815429/115147192-72a68480-a077-11eb-8473-826b318b1a09.PNG" width="500" height="350"/>
-> Leaving somewhere? Use cab karo to find the best deal for your travel..
+
+### Leaving somewhere? Use cab karo to find the best deal for your travel..
 
 ---
 

@@ -66,12 +66,13 @@ let meruFetch = require("./cab-modules/meru");
 
     // PLOTTING GRAPH
     console.log("\nPlotting graph...");
-    graphPlot.makeGraph(data);
+    await graphPlot.makeGraph(data);
+    console.log("\nGraph plotted...");
 
     // MAKING TABLE
     console.log("\nFormatting html...");
-    htmlFormat.makeHTML(source, dest, data, mapArr);
-
+    await htmlFormat.makeHTML(source, dest, data, mapArr);
+    console.log("\nHtml file is ready...");
     // GENERATING PDF
     console.log("\nGenerating pdf...");
     await pdfconverter();
@@ -80,10 +81,10 @@ let meruFetch = require("./cab-modules/meru");
     console.log("\nSending mail...");
 
     let email = fs.readFileSync("./data/credentials.txt", "utf-8");
-    notify.gmailsend(email);
+    await notify.gmailsend(email);
 
-    console.log("\nSending whatsapp...");
-    notify.whatsappNotify(email);
+    // console.log("\nSending whatsapp...");
+    // await notify.whatsappNotify(email);
 
     console.log("\nWork finished...");
   } catch (err) {

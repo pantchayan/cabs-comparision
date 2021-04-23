@@ -1,5 +1,5 @@
 let fs = require("fs");
-function makeHTML(source, dest, data, mapArr) {
+async function makeHTML(source, dest, data, mapArr) {
   // Source Destination
   let html = fs.readFileSync("index.html", "utf-8");
 
@@ -41,7 +41,7 @@ function makeHTML(source, dest, data, mapArr) {
 
   newHtml = newHtml.replace("{%MERU_VALUES%}", meruHtml);
 
-  fs.writeFileSync("index.html", newHtml);
+  return fs.writeFileSync("index.html", newHtml);
 }
 
 module.exports.makeHTML = makeHTML;

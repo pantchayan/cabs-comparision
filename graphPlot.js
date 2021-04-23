@@ -1,5 +1,5 @@
 let fs = require("fs");
-function makeGraph (data) {
+async function makeGraph (data) {
        let html = fs.readFileSync("template.html","utf-8");
        // [
        //        ['Types', 'Uber', 'Ola', 'Meru'],
@@ -41,7 +41,7 @@ function makeGraph (data) {
        }
        console.log(arr);
        let newHtml = html.replace("{DATA_VALUES}",JSON.stringify(arr));
-       fs.writeFileSync("index.html",newHtml);
+       return fs.writeFileSync("index.html",newHtml);
 }
 
 module.exports.makeGraph = makeGraph;
